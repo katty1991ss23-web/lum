@@ -1,0 +1,143 @@
+.dark-block {
+    background-color: #1e1e1e; /* Темний колір блоку */
+    color: #ffffff;            /* Білий колір тексту */
+    
+    /* Розтягуємо блок рівно на всю висоту екрана */
+    min-height: 100vh;         
+    
+    /* Прибираємо будь-які рамки та відступи самого блоку */
+    margin: 0;                 
+    box-sizing: border-box;
+
+    /* Внутрішні відступи для контенту всередині (щоб текст не лип до країв телефону) */
+    padding: 40px 20px;        
+
+    /* ЦЕНТРУВАННЯ КОНТЕНТУ: */
+    /* Ці 4 рядки зроблять так, що ваш текст автоматично 
+       стане рівно по центру екрана телефону (і по вертикалі, і по горизонталі) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Прибираємо стандартні відступи сторінки */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Сам блок на весь екран */
+.dark-block {
+    position: relative;        /* Потрібно для позиціонування відео всередині */
+    width: 100%;
+    min-height: 100vh;         /* Розтягуємо на всю висоту екрана */
+    background-color: #1e1e1e; /* Темний фон, поки відео завантажується */
+    overflow: hidden;          /* Ховаємо все, що виходить за межі екрана */
+    
+    /* Центрування контенту поверх відео */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Стилі для відео-фону */
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;         /* Відео заповнює весь блок без спотворень (як background-size: cover) */
+    z-index: 1;                /* Відео йде на задній план */
+}
+
+/* Контент, який буде поверх відео */
+.block-content {
+    position: relative;
+    z-index: 2;                /* Піднімаємо текст вище над відео */
+    color: #ffffff;            /* Білий колір тексту для контрасту */
+    text-align: center;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+/* Принудительно сбрасываем отступы у страницы */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Настройки главного темного блока на весь экран */
+.dark-block {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #1e1e1e;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Фоновое видео */
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Контейнер для кнопки поверх видео */
+.block-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* СТИЛИ ДЛЯ ТВОЕЙ КНОПКИ CALL TO ACTION */
+/* Основна кнопка */
+/* Основна кнопка */
+.btn-cta {
+    display: inline-block;
+    text-decoration: none;
+    
+    background-color: #000000;
+    color: #ffffff;
+    border: 2px solid #5ce1e6;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px; /* Збільшив розмір шрифту */
+    font-weight: bold;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+    /* 1. РОЗМІР КНОПКИ (ДОВЖИНА І ШИРИНА) */
+    /* Перше число (20px) — це висота (вгору/вниз від тексту)
+       Друге число (85px) — це ширина (вліво/вправо від тексту) */
+    padding: 20px 115px; 
+
+    /* 2. РУХ КНОПКИ (ВГОРУ, ВНИЗ, ВЛІВО, ВПРАВО) */
+    /* Щоб рухати кнопку, змінюйте ці 4 значення (зараз стоїть 0): */
+    margin-top: 380px;     /* Рух ВНИЗ (число більше — кнопка падає нижче) */
+    margin-bottom: 0px;  /* Рух ВГОРУ */
+    margin-left: 0px;    /* Рух ВПРАВО */
+    margin-right: 0px;   /* Рух ВЛІВО */
+}
+/* ЕФЕКТ ХОВЕРУ (При наведенні мишкою на ПК) */
+.btn-cta:hover {
+    background-color: #0b8ba4;    /* Колір всередині залишається залізно чорним */
+    box-shadow: 0 0 25px #5ce1e6; /* Потужне неонове сяйво контуру */
+    text-shadow: 0 0 8px #5ce1e6;  /* Текст теж починає злегка підсвічуватися блакитним */
+}
+
+/* ЕФЕКТ КЛІКАБЕЛЬНОСТІ (Спрацьовує в момент самого кліку/натискання пальцем) */
+.btn-cta:active {
+    transform: scale(0.96);       /* Кнопка візуально трохи вдавлюється всередину при кліку */
+    box-shadow: 0 0 15px #5ce1e6; /* Сяйво стає трохи компактнішим, імітуючи натискання */
+}
+
+
+
