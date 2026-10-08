@@ -117,7 +117,7 @@ body {
     /* 1. РОЗМІР КНОПКИ (ДОВЖИНА І ШИРИНА) */
     /* Перше число (20px) — це висота (вгору/вниз від тексту)
        Друге число (85px) — це ширина (вліво/вправо від тексту) */
-    padding: 20px 115px; 
+    padding: 14px 120px; 
 
     /* 2. РУХ КНОПКИ (ВГОРУ, ВНИЗ, ВЛІВО, ВПРАВО) */
     /* Щоб рухати кнопку, змінюйте ці 4 значення (зараз стоїть 0): */
@@ -137,17 +137,6 @@ body {
 .btn-cta:active {
     transform: scale(0.96);       /* Кнопка візуально трохи вдавлюється всередину при кліку */
     box-shadow: 0 0 15px #5ce1e6; /* Сяйво стає трохи компактнішим, імітуючи натискання */
-}
-
-/* Додати в самий кінець файлу css.css */
-@media (max-width: 480px) {
-    .btn-cta {
-        white-space: nowrap !important;
-        max-width: 90% !important;
-        box-sizing: border-box !important;
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-    }
 }
 
 
