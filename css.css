@@ -139,5 +139,16 @@ body {
     box-shadow: 0 0 15px #5ce1e6; /* Сяйво стає трохи компактнішим, імітуючи натискання */
 }
 
+/* Додати в самий кінець файлу css.css */
+@media (max-width: 480px) {
+    .btn-cta {
+        white-space: nowrap !important;
+        max-width: 90% !important;
+        box-sizing: border-box !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+}
+
 
 
