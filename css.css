@@ -163,7 +163,7 @@ body {
 @media (max-width: 768px) {
 
     .bg-video {
-        --video-w: 86%;
+        --video-w: 100%;
         --video-h: 78%;
         --video-x: 0px;
         --video-y: -40px;
@@ -175,7 +175,7 @@ body {
 
     .btn-cta {
         width: 100%;
-        max-width: 420px;
+        max-width: 410px;
         padding: 14px 20px;
         font-size: 16px;
     }
