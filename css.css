@@ -163,7 +163,7 @@ body {
 @media (max-width: 768px) {
 
     .bg-video {
-        --video-w: 100%;
+        --video-w: 85%;
         --video-h: 78%;
         --video-x: 0px;
         --video-y: -40px;
