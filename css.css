@@ -194,3 +194,12 @@ body {
     }
 
 }
+
+/* Піднімаємо кнопку чату Tidio */
+#tidio-chat-iframe,
+#tidio-chat {
+    bottom: 90px !important; /* Змінюй це значення (наприклад, 50px, 60px), щоб підняти вище чи нижче */
+right: 17px !important;
+
+}
+
