@@ -47,7 +47,7 @@ body {
    ========================================================= */
 
 .bg-video {
-    --video-h: 80%;
+    --video-h: 60%;
     --video-y: -40px;
 
     position: absolute;
@@ -97,7 +97,7 @@ body {
 
 .btn-cta {
     --btn-x: 0px;
-    --btn-y: 20px;
+    --btn-y: 35px;
 
     pointer-events: auto;
 
@@ -198,8 +198,22 @@ body {
 /* Піднімаємо кнопку чату Tidio */
 #tidio-chat-iframe,
 #tidio-chat {
-    bottom: 20px !important; /* Змінюй це значення (наприклад, 50px, 60px), щоб підняти вище чи нижче */
-right: 5px !important;
+    bottom: -410px !important; /* Змінюй це значення (наприклад, 50px, 60px), щоб підняти вище чи нижче */
+right: 12px !important;
 
 }
 
+/* Жорстко фіксуємо весь віджет Tidio у правому нижньому кутку */
+#tidio-chat {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    z-index: 999999 !important;
+}
+
+/* Робимо саме вікно чату акуратнішим, щоб воно не розтягувалося на пів екрана */
+#tidio-chat-iframe {
+    width: 160px !important;
+    height: 240px !important;
+    max-height: 80vh !important;
+}
