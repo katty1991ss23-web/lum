@@ -14,6 +14,14 @@ body {
     background-color: #1e1e1e;
 }
 
+/* Додай сюди, щоб точно скинути будь-які можливі заокруглення */
+html,
+body,
+.dark-block,
+.bg-video,
+.blur-frame {
+    border-radius: 0 !important;
+}
 
 /* =========================================================
    ГОЛОВНИЙ БЛОК
@@ -34,10 +42,15 @@ body {
     min-height: 500px;
 
     overflow: hidden;
-    background-color: #1e1e1e;
     color: #ffffff;
-}
 
+    /* Фон-фото замість суцільного темного кольору */
+    background-color: #1e1e1e;            /* запасний колір, поки фото вантажиться */
+    background-image: url("tre/4.png");
+    background-size: cover;               /* заповнює весь блок */
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
 /* =========================================================
    ВІДЕО (ПК)
@@ -67,6 +80,49 @@ body {
     z-index: 1;
 }
 
+/* =========================================================
+   СВІТЛА СМУГА З БЛЮРОМ (під кнопкою, над відео)
+
+   --frame-h      висота смуги (від низу блоку)
+   --frame-w      ширина смуги
+   --frame-x      зсув: мінус = вліво,  плюс = вправо
+   --frame-y      зсув: мінус = вгору,  плюс = вниз
+   --frame-blur   сила розмиття (більше = сильніше)
+   --frame-bg     колір і прозорість (останнє число 0-1)
+   ========================================================= */
+
+.blur-frame {
+    --frame-h: 25%;                 /* Зробив трохи вище, щоб туман гарно розсіювався */
+    --frame-w: 100%;
+    --frame-x: 0px;
+    --frame-y: 0px;
+    --frame-blur: 50px;             /* Зменшили з 940px до 40px, щоб це був легкий туман, а не біла стіна */
+    --frame-bg: rgba(255, 255, 255, 0.15); /* Робимо світліршим і повітрянішим (менше відсоток непрозорості) */
+
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+
+    width: var(--frame-w);
+    height: var(--frame-h);
+
+    transform: translate(
+        calc(-50% + var(--frame-x)),
+        var(--frame-y)
+    );
+
+    background: var(--frame-bg);
+
+    -webkit-backdrop-filter: blur(var(--frame-blur));
+    backdrop-filter: blur(var(--frame-blur));
+
+    /* Плавне розчинення туману зверху вниз, щоб не було різких меж */
+    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to top, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
+
+    z-index: 1;             /* над відео, під кнопкою */
+    pointer-events: none;    /* не заважає клікам */
+}
 
 /* =========================================================
    ШАР З КНОПКОЮ (ПК)
