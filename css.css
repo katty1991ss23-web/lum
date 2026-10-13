@@ -32,24 +32,20 @@ body,
    ========================================================= */
 
 .dark-block {
-    --video-w: 96%;
-    --video-x: 0px;
+  --video-w: 96%;
+  --video-x: 0px;
 
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    height: 100svh;
-    min-height: 500px;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  min-height: 500px;
 
-    overflow: hidden;
-    color: #ffffff;
+  overflow: hidden;
+  color: #ffffff;
 
-    /* Фон-фото замість суцільного темного кольору */
-    background-color: #1e1e1e;            /* запасний колір, поки фото вантажиться */
-    background-image: url("tre/4.png");
-    background-size: cover;               /* заповнює весь блок */
-    background-position: center;
-    background-repeat: no-repeat;
+  /* Суцільний темний фон */
+  background-color: #1e1e1e;
 }
 
 /* =========================================================
