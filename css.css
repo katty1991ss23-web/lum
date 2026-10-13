@@ -14,7 +14,7 @@ body {
     background-color: #1e1e1e;
 }
 
-/* Додай сюди, щоб точно скинути будь-які можливі заокруглення */
+/* Скидаємо будь-які можливі заокруглення */
 html,
 body,
 .dark-block,
@@ -23,45 +23,198 @@ body,
     border-radius: 0 !important;
 }
 
-/* =========================================================
-   ГОЛОВНИЙ БЛОК
-   Завжди на весь екран.
 
-   --video-w   ширина відео
-   --video-x   горизонтальний зсув відео
+/* =========================================================
+   ╔═══════════════════════════════════════════════════════╗
+   ║  ПАНЕЛЬ НАЛАШТУВАНЬ №1 — КОМП'ЮТЕР (ПК)               ║
+   ║  Міняйте тільки тут. На телефон НЕ впливає.           ║
+   ╚═══════════════════════════════════════════════════════╝
    ========================================================= */
 
-.dark-block {
-  --video-w: 96%;
-  --video-x: 0px;
+:root {
 
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  height: 100svh;
-  min-height: 500px;
+    /* ---------- ВІДЕО ---------- */
+    --video-w: 96%;            /* ширина */
+    --video-h: 54%;            /* висота */
+    --video-top: 32%;          /* позиція зверху (більше = нижче) */
+    --video-x: 0px;            /* зсув: мінус = вліво,  плюс = вправо */
+    --video-y: -18px;          /* зсув: мінус = вгору,  плюс = вниз */
 
-  overflow: hidden;
-  color: #ffffff;
+    /* ---------- СМУГА З БЛЮРОМ ---------- */
+    --frame-h: 25%;            /* висота смуги від низу */
+    --frame-w: 100%;           /* ширина */
+    --frame-x: 0px;            /* зсув вліво / вправо */
+    --frame-y: 0px;            /* зсув вгору / вниз */
+    --frame-blur: 50px;        /* сила розмиття */
+    --frame-bg: rgba(255, 255, 255, 0.15);   /* колір і прозорість */
 
-  /* Суцільний темний фон */
-  background-color: #1e1e1e;
+    /* ---------- ЛОГОТИП ---------- */
+    --logo-w: 160px;           /* ширина (висота підлаштується сама) */
+    --logo-left: 2%;           /* відступ від лівого краю (більше = правіше) */
+    --logo-top: 24px;          /* відступ зверху (більше = нижче) */
+    --logo-x: 0px;             /* додатковий зсув вліво / вправо */
+    --logo-y: 0px;             /* додатковий зсув вгору / вниз */
+
+    /* ---------- ТЕКСТОВИЙ БЛОК (весь) ---------- */
+    --text-left: 2%;           /* відступ від лівого краю (більше = правіше) */
+    --text-bottom: 20%;        /* відступ від низу (більше = вище) */
+    --text-w: 500px;           /* максимальна ширина тексту */
+    --text-gap: 35px;          /* відстань між заголовком і підзаголовком */
+
+    /* ---------- ЗАГОЛОВОК ---------- */
+    --title-size: 5.5rem;      /* розмір шрифту */
+    --title-line: 1.1;         /* міжрядковий інтервал */
+    --title-x: 0px;            /* зсув вліво / вправо */
+    --title-y: 0px;            /* зсув вгору / вниз */
+
+    /* ---------- ПІДЗАГОЛОВОК ---------- */
+    --subtitle-size: 1.1rem;
+    --subtitle-line: 1.5;
+    --subtitle-x: 0px;
+    --subtitle-y: 0px;
+
+    /* ---------- КНОПКА ---------- */
+    --btn-bottom: 60px;        /* відступ шару кнопки від низу */
+    --btn-side: 24px;          /* бокові відступи шару кнопки */
+    --btn-x: 0px;              /* зсув: мінус = вліво,  плюс = вправо */
+    --btn-y: -60px;            /* зсув: мінус = вгору,  плюс = вниз */
+    --btn-w: auto;             /* ширина (auto = за розміром тексту) */
+    --btn-pad-y: 14px;         /* внутрішній відступ зверху / знизу */
+    --btn-pad-x: clamp(40px, 8vw, 120px);   /* внутрішній відступ з боків */
+    --btn-font: 18px;          /* розмір шрифту */
+
+    /* ---------- ЗВ'ЯЗКА КЛЮЧІВ ---------- */
+    --keys-w: 120px;           /* ширина (висота підлаштується сама) */
+    --keys-x: 520px;             /* зсув вліво / вправо */
+    --keys-y: 0px;             /* плюс = вище, мінус = нижче (підганяє момент дотику) */
+    --keys-angle: 28deg;       /* розмах гойдання */
+    --keys-speed: 3.2s;        /* повний цикл; менше = швидше */
+    --btn-h: 54px;             /* висота кнопки (щоб ключі висіли рівно над нею) */
+
 }
 
-/* =========================================================
-   ВІДЕО (ПК)
 
-   --video-h   висота відео
-   --video-y   зсув: мінус = вгору,  плюс = вниз
+
+
+
+/* =========================================================
+   ПЛАНШЕТ (769–1024px)
+   Працює як ПК. Відрізняється тільки двома значеннями.
    ========================================================= */
 
-.bg-video {
-    --video-h: 84%;
-    --video-y: -2px;
+@media (max-width: 1024px) {
 
+    :root {
+        --title-size: 2.8rem;
+        --btn-bottom: 48px;
+    }
+
+}
+
+
+/* =========================================================
+   ╔═══════════════════════════════════════════════════════╗
+   ║  ПАНЕЛЬ НАЛАШТУВАНЬ №2 — ТЕЛЕФОН (до 768px)           ║
+   ║  Міняйте тільки тут. На ПК НЕ впливає.                ║
+   ║  Усі значення прописані окремо, нічого не береться    ║
+   ║  з панелі ПК.                                         ║
+   ╚═══════════════════════════════════════════════════════╝
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    :root {
+
+        /* ---------- ВІДЕО ---------- */
+        --video-w: 85%;
+        --video-h: 48%;
+        --video-top: 48%;
+        --video-x: 0px;
+        --video-y: -120px;
+
+        /* ---------- СМУГА З БЛЮРОМ ---------- */
+        --frame-h: 25%;
+        --frame-w: 100%;
+        --frame-x: 0px;
+        --frame-y: 0px;
+        --frame-blur: 50px;
+        --frame-bg: rgba(255, 255, 255, 0.15);
+
+        /* ---------- ЛОГОТИП ---------- */
+        --logo-w: 110px;
+        --logo-left: 7%;
+        --logo-top: 36px;
+        --logo-x: 0px;
+        --logo-y: 0px;
+
+        /* ---------- ТЕКСТОВИЙ БЛОК (весь) ---------- */
+        --text-left: 7%;
+        --text-bottom: 30%;
+        --text-w: 76%;
+        --text-gap: 18px;
+
+        /* ---------- ЗАГОЛОВОК ---------- */
+        --title-size: 2.1rem;
+        --title-line: 1.1;
+        --title-x: 0px;
+        --title-y: 0px;
+
+        /* ---------- ПІДЗАГОЛОВОК ---------- */
+        --subtitle-size: 0.95rem;
+        --subtitle-line: 1.5;
+        --subtitle-x: 0px;
+        --subtitle-y: 0px;
+
+        /* ---------- КНОПКА ---------- */
+        --btn-bottom: 54px;
+        --btn-side: 0px;
+        --btn-x: 0px;
+        --btn-y: -60px;
+        --btn-w: var(--video-w);   /* ширина кнопки = ширина відео на телефоні;
+                                      можна поставити своє число, наприклад 80% */
+        --btn-pad-y: 14px;
+        --btn-pad-x: 0px;
+        --btn-font: 16px;
+
+        --keys-w: 90px;
+        --keys-x: 90px;
+        --keys-y: 0px;
+        --keys-angle: 24deg;
+        --keys-speed: 3.2s;
+        --btn-h: 50px;
+    }
+}
+
+
+
+/* =========================================================
+   ДАЛІ — САМІ ЕЛЕМЕНТИ. ЧИСЕЛ ТУТ НЕ МІНЯЙТЕ,
+   УСЕ КЕРУЄТЬСЯ З ПАНЕЛЕЙ ВИЩЕ.
+   ========================================================= */
+
+
+/* ---------- ГОЛОВНИЙ БЛОК ---------- */
+
+.dark-block {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    min-height: 500px;
+
+    overflow: hidden;
+    color: #ffffff;
+
+    background-color: #0e363a;
+}
+
+
+/* ---------- ВІДЕО ---------- */
+
+.bg-video {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: var(--video-top);
 
     width: var(--video-w);
     height: var(--video-h);
@@ -76,25 +229,10 @@ body,
     z-index: 1;
 }
 
-/* =========================================================
-   СВІТЛА СМУГА З БЛЮРОМ (під кнопкою, над відео)
 
-   --frame-h      висота смуги (від низу блоку)
-   --frame-w      ширина смуги
-   --frame-x      зсув: мінус = вліво,  плюс = вправо
-   --frame-y      зсув: мінус = вгору,  плюс = вниз
-   --frame-blur   сила розмиття (більше = сильніше)
-   --frame-bg     колір і прозорість (останнє число 0-1)
-   ========================================================= */
+/* ---------- СМУГА З БЛЮРОМ ---------- */
 
 .blur-frame {
-    --frame-h: 25%;                 /* Зробив трохи вище, щоб туман гарно розсіювався */
-    --frame-w: 100%;
-    --frame-x: 0px;
-    --frame-y: 0px;
-    --frame-blur: 50px;             /* Зменшили з 940px до 40px, щоб це був легкий туман, а не біла стіна */
-    --frame-bg: rgba(255, 255, 255, 0.15); /* Робимо світліршим і повітрянішим (менше відсоток непрозорості) */
-
     position: absolute;
     left: 50%;
     bottom: 0;
@@ -112,17 +250,77 @@ body,
     -webkit-backdrop-filter: blur(var(--frame-blur));
     backdrop-filter: blur(var(--frame-blur));
 
-    /* Плавне розчинення туману зверху вниз, щоб не було різких меж */
     -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
     mask-image: linear-gradient(to top, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
 
-    z-index: 1;             /* над відео, під кнопкою */
-    pointer-events: none;    /* не заважає клікам */
+    z-index: 1;              /* над відео, під текстом і кнопкою */
+    pointer-events: none;
 }
 
-/* =========================================================
-   ШАР З КНОПКОЮ (ПК)
-   ========================================================= */
+
+/* ---------- ЛОГОТИП ---------- */
+
+.logo {
+    position: absolute;
+    left: var(--logo-left);
+    top: var(--logo-top);
+
+    display: block;
+    width: var(--logo-w);
+    height: auto;
+
+    transform: translate(var(--logo-x), var(--logo-y));
+
+    z-index: 3;              /* поверх відео, смуги, тексту й кнопки */
+
+    user-select: none;
+    pointer-events: none;
+}
+
+
+/* ---------- ТЕКСТОВИЙ БЛОК (окремий, не залежить від кнопки) ---------- */
+
+.text-block {
+    position: absolute;
+    left: var(--text-left);
+    bottom: var(--text-bottom);
+
+    width: 100%;
+    max-width: var(--text-w);
+
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--text-gap);
+
+    pointer-events: none;
+}
+
+.main-title {
+    margin: 0;
+    font-size: var(--title-size);
+    font-weight: 800;
+    line-height: var(--title-line);
+    color: #ffffff;
+    text-transform: uppercase;
+
+    transform: translate(var(--title-x), var(--title-y));
+}
+
+.subtitle {
+    margin: 0;
+    font-size: var(--subtitle-size);
+    line-height: var(--subtitle-line);
+    color: #e0e0e0;
+    font-weight: 400;
+
+    transform: translate(var(--subtitle-x), var(--subtitle-y));
+}
+
+
+/* ---------- ШАР З КНОПКОЮ ---------- */
 
 .block-content {
     position: absolute;
@@ -133,27 +331,20 @@ body,
     justify-content: center;
     align-items: flex-end;
 
-    padding: 0 24px 60px;        /* 60px = відступ кнопки від низу */
+    padding: 0 var(--btn-side) var(--btn-bottom);
 
     pointer-events: none;
 }
 
 
-/* =========================================================
-   КНОПКА (ПК)
-   Своя ширина, не залежить від відео.
-
-   --btn-x   мінус = вліво,  плюс = вправо
-   --btn-y   мінус = вгору,  плюс = вниз
-   ========================================================= */
+/* ---------- КНОПКА ---------- */
 
 .btn-cta {
-    --btn-x: 0px;
-    --btn-y: -90px;
-
     pointer-events: auto;
 
-    display: inline-block;
+    display: block;
+    width: var(--btn-w);
+
     text-decoration: none;
     text-align: center;
     white-space: nowrap;
@@ -163,12 +354,11 @@ body,
     border: 2px solid #5ce1e6;
 
     font-family: Arial, sans-serif;
-    font-size: 18px;
+    font-size: var(--btn-font);
     font-weight: bold;
     cursor: pointer;
 
-    /* Ширина росте разом з екраном: від 40px до 120px з боків */
-    padding: 14px clamp(40px, 8vw, 120px);
+    padding: var(--btn-pad-y) var(--btn-pad-x);
 
     transform: translate(var(--btn-x), var(--btn-y));
 
@@ -190,60 +380,74 @@ body,
 }
 
 
-/* =========================================================
-   ПЛАНШЕТ
-   ========================================================= */
+/* ---------- ЗВ'ЯЗКА КЛЮЧІВ ---------- */
 
-@media (max-width: 1024px) {
+.keys {
+    position: absolute;
+    left: 50%;
+    bottom: calc(var(--btn-bottom) - var(--btn-y) + var(--btn-h) + var(--keys-y));
 
-    .block-content {
-        padding-bottom: 48px;
-    }
+    width: var(--keys-w);
+    aspect-ratio: 120 / 250;
 
+    transform: translateX(calc(-50% + var(--btn-x) + var(--keys-x)));
+
+    z-index: 3;
+    pointer-events: none;
+}
+
+.keys-swing {
+    width: 100%;
+    height: 100%;
+    transform-origin: 50% 0;
+    animation: keys-swing var(--keys-speed) cubic-bezier(.37, 0, .63, 1) infinite;
+    will-change: transform;
+}
+
+.keys svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.55));
+}
+
+@keyframes keys-swing {
+    0%, 100% { transform: rotate(calc(var(--keys-angle) * -1)); }
+    50%      { transform: rotate(var(--keys-angle)); }
 }
 
 
-/* =========================================================
-   ТЕЛЕФОН
-   Ширина кнопки = ширина відео (--video-w).
-   Міняти ширину обох разом: --video-w нижче.
-   ========================================================= */
+/* ---------- СПАЛАХ КНОПКИ ПРИ ДОТИКУ ---------- */
 
-@media (max-width: 768px) {
-
-    .dark-block {
-        --video-w: 85%;
-        --video-x: 0px;
-    }
-
-    .bg-video {
-        --video-h: 78%;
-        --video-y: -40px;
-    }
-
-    .block-content {
-        padding: 0 0 40px;
-    }
-
-    .btn-cta {
-        display: block;
-        width: var(--video-w);
-        padding: 14px 0;
-        font-size: 16px;
-
-        /* Їде разом з відео по горизонталі + свій власний зсув */
-        transform: translate(
-            calc(var(--video-x) + var(--btn-x)),
-            var(--btn-y)
-        );
-    }
-
-    .btn-cta:active {
-        transform: translate(
-            calc(var(--video-x) + var(--btn-x)),
-            var(--btn-y)
-        ) scale(0.96);
-    }
-
+.btn-cta {
+    position: relative;
 }
 
+.btn-cta::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #0b8ba4;
+    box-shadow: 0 0 25px #5ce1e6;
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+    animation: keys-hit var(--keys-speed) linear infinite;
+}
+
+@keyframes keys-hit {
+    0%, 21%  { opacity: 0; }
+    25%      { opacity: 1; }
+    36%      { opacity: 0; }
+    71%      { opacity: 0; }
+    75%      { opacity: 1; }
+    86%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .keys-swing,
+    .btn-cta::after {
+        animation: none;
+    }
+}
