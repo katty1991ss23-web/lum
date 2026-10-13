@@ -11,19 +11,66 @@
 
     <!-- Ваш єдиний блок -->
     <div class="dark-block">
+
         <!-- Відео, яке автоматично відтворюється по колу без звуку -->
         <video autoplay loop muted playsinline class="bg-video">
             <source src="wer/1.mp4" type="video/mp4">
         </video>
-                <!-- Світла смуга з блюром внизу -->
+
+        <!-- Світла смуга з блюром внизу -->
         <div class="blur-frame"></div>
 
-        <!-- Контент поверх відео -->
+        <!-- ЛОГОТИП (окремий елемент зі своїми налаштуваннями) -->
+        <img src="tre/log.png" alt="Люмербуд" class="logo">
+
+        <!-- ТЕКСТ (окремий блок: рухається незалежно від кнопки) -->
+        <div class="text-block">
+            <h1 class="main-title">
+                РЕМОНТ<br>ПІД КЛЮЧ
+            </h1>
+            <p class="subtitle">
+                Повний цикл робіт: від демонтажу до фінального прибирання. 
+            </p>
+        </div>
+
+        <!-- КНОПКА (окремий шар, лежить на своєму старому місці) -->
         <div class="block-content">
-            <!-- Кнопка Call to Action -->
             <a href="https://lumirbud.com.ua/" class="btn-cta">Перейти на сайт</a>
         </div>
+
     </div>
+            <!-- ЗВ'ЯЗКА КЛЮЧІВ (б'є по кнопці) -->
+        <div class="keys" aria-hidden="true">
+            <div class="keys-swing">
+                <svg viewBox="0 0 120 250" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0" stop-color="#fff0a8"/>
+                            <stop offset=".5" stop-color="#d4a62a"/>
+                            <stop offset="1" stop-color="#8a6510"/>
+                        </linearGradient>
+                        <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0" stop-color="#f4f4f4"/>
+                            <stop offset=".5" stop-color="#a9a9a9"/>
+                            <stop offset="1" stop-color="#5e5e5e"/>
+                        </linearGradient>
+                        <g id="key">
+                            <path fill="url(#gold)" fill-rule="evenodd"
+                                  d="M48 70a12 12 0 1 0 24 0a12 12 0 1 0 -24 0ZM55 70a5 5 0 1 0 10 0a5 5 0 1 0 -10 0Z"/>
+                            <rect x="56.5" y="81" width="7" height="167" rx="2" fill="url(#gold)"/>
+                            <rect x="63.5" y="208" width="8" height="7" fill="url(#gold)"/>
+                            <rect x="63.5" y="222" width="6" height="7" fill="url(#gold)"/>
+                            <rect x="63.5" y="236" width="9" height="7" fill="url(#gold)"/>
+                        </g>
+                    </defs>
+                    <path d="M60 0V28" stroke="url(#steel)" stroke-width="3"/>
+                    <circle cx="60" cy="48" r="20" fill="none" stroke="url(#steel)" stroke-width="5"/>
+                    <use href="#key" transform="rotate(-17 60 60)"/>
+                    <use href="#key" transform="rotate(17 60 60)"/>
+                    <use href="#key"/>
+                </svg>
+            </div>
+        </div>
 
     <script src="//code.tidio.co/xxz5wpmrofdfwmzav8ublsifpx5b4sqg.js" async></script>
 
