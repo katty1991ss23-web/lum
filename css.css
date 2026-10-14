@@ -173,7 +173,7 @@ body,
         --glass-display: block;
         --glass-w: 47%;
         --glass-h: 120px;
-        --glass-left: 38%; /* Четко от середины */
+        --glass-left: 32%; /* Четко от середины */
         --glass-bottom: calc(var(--text-bottom) - 20px);
         --glass-x: 20px;   /* Подгони один раз смещение вправо/влево от центра */
         --glass-y: 0px;
@@ -215,7 +215,7 @@ body,
         --logo-y: 0px;
 
         /* ---------- ЗАГОЛОВОК ---------- */
-        --text-left: 44%;
+        --text-left: 38%;
         --text-bottom: calc(30% + 242px);
         --text-w: 76%;
         --title-size: 2.1rem;
