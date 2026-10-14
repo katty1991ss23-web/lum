@@ -42,11 +42,11 @@ body,
 
     /* ---------- СМУГА З БЛЮРОМ ---------- */
     --frame-h: 25%;            /* висота смуги від низу */
-    --frame-w: 100%;           /* ширина */
+    --frame-w: 120%;           /* ширина */
     --frame-x: 0px;            /* зсув вліво / вправо */
     --frame-y: 0px;            /* зсув вгору / вниз */
     --frame-blur: 50px;        /* сила розмиття */
-    --frame-bg: rgba(255, 255, 255, 0.15);   /* колір і прозорість */
+    --frame-bg: rgba(94, 176, 21, 0.15);   /* колір і прозорість */
 
     /* ---------- СКЛЯНИЙ ФРЕЙМ (під заголовком і ключами) ---------- */
     --glass-display: block;    /* block = показати, none = сховати */
@@ -162,12 +162,12 @@ body,
         --video-y: -120px;
 
         /* ---------- СМУГА З БЛЮРОМ ---------- */
-        --frame-h: 25%;
-        --frame-w: 100%;
+        --frame-h: 45%;
+        --frame-w: 170%;
         --frame-x: 0px;
         --frame-y: 0px;
         --frame-blur: 50px;
-        --frame-bg: rgba(255, 255, 255, 0.15);
+        --frame-bg: rgba(109, 248, 11, 0.15);
 
         /* ---------- СКЛЯНИЙ ФРЕЙМ ---------- */
         --glass-display: block;
@@ -177,6 +177,7 @@ body,
         --glass-bottom: calc(var(--text-bottom) - 20px);
         --glass-x: 20px;   /* Подгони один раз смещение вправо/влево от центра */
         --glass-y: 0px;
+         --glass-opacity:0.74;
         --glass-bg: rgba(6, 25, 57, 0.55);
         --glass-blur: 12px;
         --glass-border: rgba(52, 128, 168, 0.18);
@@ -189,9 +190,10 @@ body,
         --marquee-bottom: 35%;
         --marquee-left: 0%;
         --marquee-w: 100%;
-        --marquee-size: 1.8rem;
+        --marquee-size: 1.4rem;
         --marquee-weight: 600;
         --marquee-font: inherit;
+       
         --marquee-gap: 24px;
         --marquee-speed: 40s;
         --marquee-color: #e3dcdc;
