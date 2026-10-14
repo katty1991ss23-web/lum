@@ -170,12 +170,12 @@ body,
         --frame-bg: rgba(255, 255, 255, 0.15);
 
         /* ---------- СКЛЯНИЙ ФРЕЙМ ---------- */
-        --glass-display: block;    /* block = показати, none = сховати */
+        --glass-display: block;
         --glass-w: 47%;
         --glass-h: 120px;
-        --glass-left: calc(var(--text-left) -1%);
+        --glass-left: 38%; /* Четко от середины */
         --glass-bottom: calc(var(--text-bottom) - 20px);
-        --glass-x: 174px;
+        --glass-x: 20px;   /* Подгони один раз смещение вправо/влево от центра */
         --glass-y: 0px;
         --glass-bg: rgba(6, 25, 57, 0.55);
         --glass-blur: 12px;
