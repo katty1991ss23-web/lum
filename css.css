@@ -48,6 +48,46 @@ body,
     --frame-blur: 50px;        /* сила розмиття */
     --frame-bg: rgba(255, 255, 255, 0.15);   /* колір і прозорість */
 
+    /* ---------- СКЛЯНИЙ ФРЕЙМ (під заголовком і ключами) ---------- */
+    --glass-display: block;    /* block = показати, none = сховати */
+    --glass-w: 510px;          /* ширина */
+    --glass-h: 252px;          /* висота */
+    --glass-left: calc(var(--text-left) - 2.4%);      /* зліва; прив'язано до заголовка */
+    --glass-bottom: calc(var(--text-bottom) - 36px);  /* від низу; прив'язано до заголовка
+                                                         (36px = на скільки фрейм нижче заголовка) */
+    --glass-x: 20px;            /* додатковий зсув вліво / вправо */
+    --glass-y: 0px;            /* додатковий зсув вгору / вниз */
+    --glass-bg: rgba(66, 41, 35, 0.55);   /* КОЛІР І ТЕМНІСТЬ; останнє число 0–1:
+                                            більше = темніше й контрастніше */
+    --glass-blur: 14px;        /* сила розмиття відео за склом */
+    --glass-border: rgba(255, 255, 255, 0.18);   /* колір тонкої рамки */
+    --glass-radius: 12px;       /* заокруглення кутів (наприклад 16px) */
+    --glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.45),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.12);   /* тінь і блік скла */
+    --glass-z: 1;              /* шар: під заголовком, будівельником і ключами */
+
+    /* ---------- БІГУЧА СТРОКА ---------- */
+    --marquee-bottom: 36%;     /* відступ від низу (більше = вище) */
+    --marquee-left: 0%;        /* відступ від лівого краю */
+    --marquee-w: 100%;         /* ширина смуги (100% = на весь екран) */
+    --marquee-size: 1.7rem;    /* розмір шрифту */
+    --marquee-weight: 600;     /* товщина шрифту (400–800) */
+    --marquee-font: inherit;   /* шрифт; наприклад: Arial, sans-serif */
+    --marquee-gap: 40px;       /* відстань між фразами (з обох боків крапки) */
+    --marquee-speed: 50s;      /* час одного кола; менше = швидше */
+    --marquee-color: #e1dddd;  /* КОЛІР ТЕКСТУ */
+    --marquee-dot-color: #5ce1e6;   /* КОЛІР КРАПОК-РОЗДІЛЬНИКІВ */
+    --marquee-bg: transparent; /* фон смуги */
+    --marquee-z: 1;            /* шар: 1 = за будівельником і під ключами */
+
+    /* ---------- ФОТО БУДІВЕЛЬНИКА ---------- */
+    --builder-w: 840px;        /* ширина (висота підлаштується сама) */
+    --builder-left: 68%;       /* відступ від лівого краю (більше = правіше) */
+    --builder-bottom: 0px;     /* відступ від низу (більше = вище) */
+    --builder-x: -1080px;      /* додатковий зсув вліво / вправо */
+    --builder-y: 140px;        /* додатковий зсув вгору / вниз */
+    --builder-z: 2;            /* шар: 2 = під текстом і кнопкою, 4 = поверх усього */
+
     /* ---------- ЛОГОТИП ---------- */
     --logo-w: 160px;           /* ширина (висота підлаштується сама) */
     --logo-left: 2%;           /* відступ від лівого краю (більше = правіше) */
@@ -55,23 +95,15 @@ body,
     --logo-x: 0px;             /* додатковий зсув вліво / вправо */
     --logo-y: 0px;             /* додатковий зсув вгору / вниз */
 
-    /* ---------- ТЕКСТОВИЙ БЛОК (весь) ---------- */
-    --text-left: 2%;           /* відступ від лівого краю (більше = правіше) */
-    --text-bottom: 20%;        /* відступ від низу (більше = вище) */
-    --text-w: 500px;           /* максимальна ширина тексту */
-    --text-gap: 35px;          /* відстань між заголовком і підзаголовком */
-
     /* ---------- ЗАГОЛОВОК ---------- */
-    --title-size: 5.5rem;      /* розмір шрифту */
-    --title-line: 1.1;         /* міжрядковий інтервал */
-    --title-x: 0px;            /* зсув вліво / вправо */
-    --title-y: 0px;            /* зсув вгору / вниз */
-
-    /* ---------- ПІДЗАГОЛОВОК ---------- */
-    --subtitle-size: 1.1rem;
-    --subtitle-line: 1.5;
-    --subtitle-x: 0px;
-    --subtitle-y: 0px;
+    --text-left: 62%;                  /* відступ від лівого краю (більше = правіше) */
+    --text-bottom: calc(40% + 86px);   /* відступ від низу (більше = вище) */
+    --text-w: 500px;                   /* максимальна ширина тексту */
+    --title-size: 5.5rem;              /* розмір шрифту */
+    --title-line: 1.1;                 /* міжрядковий інтервал */
+    --title-color: #ffffff;            /* КОЛІР ЗАГОЛОВКА */
+    --title-x: 0px;                    /* зсув вліво / вправо */
+    --title-y: 0px;                    /* зсув вгору / вниз */
 
     /* ---------- КНОПКА ---------- */
     --btn-bottom: 60px;        /* відступ шару кнопки від низу */
@@ -85,16 +117,13 @@ body,
 
     /* ---------- ЗВ'ЯЗКА КЛЮЧІВ ---------- */
     --keys-w: 120px;           /* ширина (висота підлаштується сама) */
-    --keys-x: 520px;             /* зсув вліво / вправо */
+    --keys-x: 520px;           /* зсув вліво / вправо */
     --keys-y: 0px;             /* плюс = вище, мінус = нижче (підганяє момент дотику) */
     --keys-angle: 28deg;       /* розмах гойдання */
     --keys-speed: 3.2s;        /* повний цикл; менше = швидше */
     --btn-h: 54px;             /* висота кнопки (щоб ключі висіли рівно над нею) */
 
 }
-
-
-
 
 
 /* =========================================================
@@ -140,6 +169,44 @@ body,
         --frame-blur: 50px;
         --frame-bg: rgba(255, 255, 255, 0.15);
 
+        /* ---------- СКЛЯНИЙ ФРЕЙМ ---------- */
+        --glass-display: block;    /* block = показати, none = сховати */
+        --glass-w: 47%;
+        --glass-h: 120px;
+        --glass-left: calc(var(--text-left) -1%);
+        --glass-bottom: calc(var(--text-bottom) - 20px);
+        --glass-x: 176px;
+        --glass-y: 0px;
+        --glass-bg: rgba(6, 25, 57, 0.55);
+        --glass-blur: 12px;
+        --glass-border: rgba(52, 128, 168, 0.18);
+        --glass-radius: 12px;
+        --glass-shadow: 0 12px 30px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        --glass-z: 1;
+
+        /* ---------- БІГУЧА СТРОКА ---------- */
+        --marquee-bottom: 35%;
+        --marquee-left: 0%;
+        --marquee-w: 100%;
+        --marquee-size: 1.1rem;
+        --marquee-weight: 600;
+        --marquee-font: inherit;
+        --marquee-gap: 24px;
+        --marquee-speed: 40s;
+        --marquee-color: #e3dcdc;
+        --marquee-dot-color: #5ce1e6;
+        --marquee-bg: transparent;
+        --marquee-z: 1;
+
+        /* ---------- ФОТО БУДІВЕЛЬНИКА ---------- */
+        --builder-w: 220px;
+        --builder-left: 7%;
+        --builder-bottom: 308px;
+        --builder-x: 0px;
+        --builder-y: 0px;
+        --builder-z: 2;
+
         /* ---------- ЛОГОТИП ---------- */
         --logo-w: 110px;
         --logo-left: 7%;
@@ -147,23 +214,15 @@ body,
         --logo-x: 0px;
         --logo-y: 0px;
 
-        /* ---------- ТЕКСТОВИЙ БЛОК (весь) ---------- */
-        --text-left: 7%;
-        --text-bottom: 30%;
-        --text-w: 76%;
-        --text-gap: 18px;
-
         /* ---------- ЗАГОЛОВОК ---------- */
+        --text-left: 44%;
+        --text-bottom: calc(30% + 242px);
+        --text-w: 76%;
         --title-size: 2.1rem;
         --title-line: 1.1;
+        --title-color: #ffffff;
         --title-x: 0px;
         --title-y: 0px;
-
-        /* ---------- ПІДЗАГОЛОВОК ---------- */
-        --subtitle-size: 0.95rem;
-        --subtitle-line: 1.5;
-        --subtitle-x: 0px;
-        --subtitle-y: 0px;
 
         /* ---------- КНОПКА ---------- */
         --btn-bottom: 54px;
@@ -176,6 +235,7 @@ body,
         --btn-pad-x: 0px;
         --btn-font: 16px;
 
+        /* ---------- ЗВ'ЯЗКА КЛЮЧІВ ---------- */
         --keys-w: 90px;
         --keys-x: 90px;
         --keys-y: 0px;
@@ -184,7 +244,6 @@ body,
         --btn-h: 50px;
     }
 }
-
 
 
 /* =========================================================
@@ -258,6 +317,116 @@ body,
 }
 
 
+/* ---------- СКЛЯНИЙ ФРЕЙМ (темна підкладка під заголовок і ключі) ---------- */
+
+.glass-frame {
+    position: absolute;
+    left: var(--glass-left);
+    bottom: var(--glass-bottom);
+
+    display: var(--glass-display);
+    width: var(--glass-w);
+    height: var(--glass-h);
+
+    transform: translate(var(--glass-x), var(--glass-y));
+
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--glass-radius);
+    box-shadow: var(--glass-shadow);
+
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(120%);
+    backdrop-filter: blur(var(--glass-blur)) saturate(120%);
+
+    z-index: var(--glass-z);
+    pointer-events: none;
+}
+
+
+/* ---------- БІГУЧА СТРОКА (справа наліво, по колу) ---------- */
+
+.marquee {
+    position: absolute;
+    left: var(--marquee-left);
+    bottom: var(--marquee-bottom);
+
+    width: var(--marquee-w);
+    overflow: hidden;
+
+    background: var(--marquee-bg);
+
+    z-index: var(--marquee-z);   /* нижче будівельника (2) і ключів (3) */
+    pointer-events: none;
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+
+    animation: marquee-run var(--marquee-speed) linear infinite;
+    will-change: transform;
+}
+
+.marquee-group {
+    display: flex;
+    flex-shrink: 0;
+}
+
+.marquee-item {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+
+    white-space: nowrap;
+
+    font-family: var(--marquee-font);
+    font-size: var(--marquee-size);
+    font-weight: var(--marquee-weight);
+    line-height: 1.4;
+
+    color: var(--marquee-color);
+}
+
+/* Крапка-роздільник після кожної фрази */
+.marquee-item::after {
+    content: "";
+    flex-shrink: 0;
+
+    width: 0.3em;
+    height: 0.3em;
+    margin: 0 var(--marquee-gap);
+
+    border-radius: 50%;
+    background: var(--marquee-dot-color);
+}
+
+@keyframes marquee-run {
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(-100% / 3)); }
+}
+
+
+/* ---------- ФОТО БУДІВЕЛЬНИКА ---------- */
+
+.builder {
+    position: absolute;
+    left: var(--builder-left);
+    bottom: var(--builder-bottom);
+
+    display: block;
+    width: var(--builder-w);
+    height: auto;
+    max-width: none;
+
+    transform: translate(var(--builder-x), var(--builder-y));
+
+    z-index: var(--builder-z);
+
+    user-select: none;
+    pointer-events: none;
+}
+
+
 /* ---------- ЛОГОТИП ---------- */
 
 .logo {
@@ -278,7 +447,7 @@ body,
 }
 
 
-/* ---------- ТЕКСТОВИЙ БЛОК (окремий, не залежить від кнопки) ---------- */
+/* ---------- ЗАГОЛОВОК (окремий, не залежить від кнопки) ---------- */
 
 .text-block {
     position: absolute;
@@ -293,7 +462,6 @@ body,
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--text-gap);
 
     pointer-events: none;
 }
@@ -303,20 +471,10 @@ body,
     font-size: var(--title-size);
     font-weight: 800;
     line-height: var(--title-line);
-    color: #ffffff;
+    color: var(--title-color);
     text-transform: uppercase;
 
     transform: translate(var(--title-x), var(--title-y));
-}
-
-.subtitle {
-    margin: 0;
-    font-size: var(--subtitle-size);
-    line-height: var(--subtitle-line);
-    color: #e0e0e0;
-    font-weight: 400;
-
-    transform: translate(var(--subtitle-x), var(--subtitle-y));
 }
 
 
@@ -447,7 +605,8 @@ body,
 
 @media (prefers-reduced-motion: reduce) {
     .keys-swing,
-    .btn-cta::after {
+    .btn-cta::after,
+    .marquee-track {
         animation: none;
     }
 }
