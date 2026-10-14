@@ -171,7 +171,7 @@ body,
 
         /* ---------- СКЛЯНИЙ ФРЕЙМ ---------- */
         --glass-display: block;
-        --glass-w: 47%;
+        --glass-w: 54%;
         --glass-h: 120px;
         --glass-left: 32%; /* Четко от середины */
         --glass-bottom: calc(var(--text-bottom) - 20px);
@@ -189,7 +189,7 @@ body,
         --marquee-bottom: 35%;
         --marquee-left: 0%;
         --marquee-w: 100%;
-        --marquee-size: 1.1rem;
+        --marquee-size: 1.8rem;
         --marquee-weight: 600;
         --marquee-font: inherit;
         --marquee-gap: 24px;
