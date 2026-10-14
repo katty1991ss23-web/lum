@@ -175,7 +175,7 @@ body,
         --glass-h: 120px;
         --glass-left: calc(var(--text-left) -1%);
         --glass-bottom: calc(var(--text-bottom) - 20px);
-        --glass-x: 176px;
+        --glass-x: 154px;
         --glass-y: 0px;
         --glass-bg: rgba(6, 25, 57, 0.55);
         --glass-blur: 12px;
