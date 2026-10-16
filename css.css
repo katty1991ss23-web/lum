@@ -82,6 +82,8 @@ body,
 
     /* ---------- ФОТО БУДІВЕЛЬНИКА ---------- */
     --builder-w: 840px;        /* ширина (висота підлаштується сама) */
+    --builder-h: auto;         /* висота (auto = за пропорціями фото) */
+    --builder-max-h: none;     /* обмеження висоти (none = без обмеження) */
     --builder-left: 68%;       /* відступ від лівого краю (більше = правіше) */
     --builder-bottom: 0px;     /* відступ від низу (більше = вище) */
     --builder-x: -1080px;      /* додатковий зсув вліво / вправо */
@@ -99,11 +101,18 @@ body,
     --text-left: 62%;                  /* відступ від лівого краю (більше = правіше) */
     --text-bottom: calc(40% + 86px);   /* відступ від низу (більше = вище) */
     --text-w: 500px;                   /* максимальна ширина тексту */
+    --text-h: auto;                    /* висота блоку тексту (auto = за вмістом) */
+    --text-pad: 0px;                   /* внутрішній відступ з боків */
+    --text-x: 0px;                     /* зсув усього блоку вліво / вправо */
+    --text-y: 0px;                     /* зсув усього блоку вгору / вниз */
+    --text-justify: flex-start;        /* по вертикалі: flex-start / center / flex-end */
+    --text-align: flex-start;          /* по горизонталі: flex-start / center / flex-end */
+    --text-ta: left;                   /* вирівнювання рядків: left / center / right */
     --title-size: 5.5rem;              /* розмір шрифту */
     --title-line: 1.1;                 /* міжрядковий інтервал */
     --title-color: #ffffff;            /* КОЛІР ЗАГОЛОВКА */
-    --title-x: 0px;                    /* зсув вліво / вправо */
-    --title-y: 0px;                    /* зсув вгору / вниз */
+    --title-x: 0px;                    /* зсув тільки заголовка вліво / вправо */
+    --title-y: 0px;                    /* зсув тільки заголовка вгору / вниз */
 
     /* ---------- КНОПКА ---------- */
     --btn-bottom: 60px;        /* відступ шару кнопки від низу */
@@ -156,8 +165,8 @@ body,
 
         /* ---------- ВІДЕО ---------- */
         --video-w: 85%;
-        --video-h: 48%;
-        --video-top: 48%;
+        --video-h: 78%;
+        --video-top: 50%;
         --video-x: 0px;
         --video-y: -120px;
 
@@ -169,14 +178,14 @@ body,
         --frame-blur: 50px;
         --frame-bg: rgba(109, 248, 11, 0.15);
 
-        /* ---------- СКЛЯНИЙ ФРЕЙМ ---------- */
+        /* ---------- СКЛЯНИЙ ФРЕЙМ (ГОЛОВНИЙ: текст їде за ним) ---------- */
         --glass-display: block;
-        --glass-w: 54%;
-        --glass-h: 120px;
-        --glass-left: 32%; /* Четко от середины */
-        --glass-bottom: calc(var(--text-bottom) - 20px);
-        --glass-x: 20px;   /* Подгони один раз смещение вправо/влево от центра */
-        --glass-y: 0px;
+        --glass-w: 62%;                   /* ширина фрейму */
+        --glass-h: 120px;                 /* висота фрейму */
+        --glass-left: 28%;                /* зліва (центр фрейму лишився там, де був) */
+        --glass-bottom: calc(30% + 222px);/* від низу */
+        --glass-x: 20px;                  /* зсув вліво / вправо */
+        --glass-y: 0px;                   /* зсув вгору / вниз */
          --glass-opacity:0.74;
         --glass-bg: rgba(6, 25, 57, 0.55);
         --glass-blur: 12px;
@@ -196,31 +205,49 @@ body,
        
         --marquee-gap: 24px;
         --marquee-speed: 40s;
-        --marquee-color: #e3dcdc;
+        --marquee-color: #ffffff;
         --marquee-dot-color: #5ce1e6;
         --marquee-bg: transparent;
         --marquee-z: 1;
 
-        /* ---------- ФОТО БУДІВЕЛЬНИКА ---------- */
-        --builder-w: 220px;
-        --builder-left: 7%;
-        --builder-bottom: 306px;
-        --builder-x: 0px;
-        --builder-y: 0px;
+        /* ---------- ФОТО БУДІВЕЛЬНИКА (ПРИВ'ЯЗАНО ДО ФРЕЙМУ ВІДЕО) ----------
+           Положення й розмір рахуються з налаштувань відео вище,
+           тому фото не виїжджає за фрейм на жодному розмірі екрана. */
+        --builder-w: calc(var(--video-w) * 0.82);   /* ширина = 82% ширини відео
+                                                       (0.82 → більше/менше = фото ширше/вужче) */
+        --builder-h: auto;                          /* висота за пропорціями фото */
+        --builder-max-h: var(--video-h);            /* не вище за фрейм відео */
+        --builder-left: calc(50% - var(--video-w) / 2 + var(--video-x));
+                                                    /* лівий край = лівий край фрейму */
+        --builder-bottom: calc(100% - var(--video-top) - var(--video-h) / 2 - var(--video-y));
+                                                    /* низ = нижній край фрейму */
+        --builder-x: 0px;          /* точне підсунення вліво / вправо */
+        --builder-y: 0px;          /* точне підсунення вгору / вниз */
         --builder-z: 2;
 
         /* ---------- ЛОГОТИП ---------- */
         --logo-w: 110px;
         --logo-left: 7%;
-        --logo-top: 36px;
+        --logo-top: 16px;
         --logo-x: 0px;
         --logo-y: 0px;
 
-        /* ---------- ЗАГОЛОВОК ---------- */
-        --text-left: 38%;
-        --text-bottom: calc(30% + 242px);
-        --text-w: 76%;
-        --title-size: 2.1rem;
+        /* ---------- ЗАГОЛОВОК (ВСЕРЕДИНІ СКЛЯНОГО ФРЕЙМУ) ----------
+           Блок тексту точно накладається на скляний фрейм
+           (ті самі положення, розмір і зсув) і центрує вміст.
+           Фрейм двигаєте/міняєте вище, текст їде разом з ним. */
+        --text-left: var(--glass-left);
+        --text-bottom: var(--glass-bottom);
+        --text-w: var(--glass-w);
+        --text-h: var(--glass-h);
+        --text-pad: 12px;                 /* відступ тексту від країв фрейму */
+        --text-x: var(--glass-x);
+        --text-y: var(--glass-y);
+        --text-justify: center;           /* по центру вертикально */
+        --text-align: center;             /* по центру горизонтально */
+        --text-ta: center;                /* рядки по центру */
+        --title-size: 13cqw;              /* розмір = 13% ширини фрейму (росте/зменшується разом
+                                             з ним); більше число = більший шрифт */
         --title-line: 1.1;
         --title-color: #ffffff;
         --title-x: 0px;
@@ -244,6 +271,132 @@ body,
         --keys-angle: 24deg;
         --keys-speed: 3.2s;
         --btn-h: 50px;
+    }
+}
+
+/* =========================================================
+   ╔═══════════════════════════════════════════════════════╗
+   ║  ПАНЕЛЬ НАЛАШТУВАНЬ №3 — ТЕЛЕФОН ГОРИЗОНТАЛЬНО        ║
+   ║  Спрацьовує, коли телефон лежить на боці              ║
+   ║  (landscape, висота до 500px, ширина до 1000px).      ║
+   ║  Міняйте тільки тут. На ПК і вертикальний телефон     ║
+   ║  НЕ впливає. Усі значення прописані окремо.           ║
+   ║                                                       ║
+   ║  Одиниці: vw = 1% ширини екрана, vh = 1% висоти.      ║
+   ║  Через них усе само масштабується між 667 і 932px.    ║
+   ╚═══════════════════════════════════════════════════════╝
+   ========================================================= */
+
+@media (orientation: landscape) and (max-height: 500px) and (max-width: 1000px) {
+
+    :root {
+
+        /* ---------- ВІДЕО ---------- */
+        --video-w: 96%;
+        --video-h: 56%;
+        --video-top: 33%;
+        --video-x: 0px;
+        --video-y: 0px;
+
+        /* ---------- СМУГА З БЛЮРОМ ---------- */
+        --frame-h: 22%;
+        --frame-w: 100%;
+        --frame-x: 0px;
+        --frame-y: 0px;
+        --frame-blur: 40px;
+        --frame-bg: rgba(255, 255, 255, 0.15);
+
+        /* ---------- СКЛЯНИЙ ФРЕЙМ (ГОЛОВНИЙ: текст їде за ним) ---------- */
+        --glass-display: block;    /* block = показати, none = сховати */
+        --glass-w: 38vw;
+        --glass-h: 26vh;
+        --glass-left: 53%;
+        --glass-bottom: calc(46% - 14px);
+        --glass-x: 0px;
+        --glass-y: 0px;
+        --glass-bg: rgba(6, 22, 26, 0.55);
+        --glass-blur: 10px;
+        --glass-border: rgba(255, 255, 255, 0.18);
+        --glass-radius: 0px;
+        --glass-shadow: 0 10px 24px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        --glass-z: 1;
+
+        /* ---------- БІГУЧА СТРОКА ---------- */
+        --marquee-bottom: 30%;
+        --marquee-left: 0%;
+        --marquee-w: 100%;
+        --marquee-size: 1rem;
+        --marquee-weight: 600;
+        --marquee-font: inherit;
+        --marquee-gap: 20px;
+        --marquee-speed: 35s;
+        --marquee-color: #ffffff;
+        --marquee-dot-color: #5ce1e6;
+        --marquee-bg: transparent;
+        --marquee-z: 1;
+
+        /* ---------- ФОТО БУДІВЕЛЬНИКА (ПРИВ'ЯЗАНО ДО ФРЕЙМУ ВІДЕО) ----------
+           Тут розмір рахується від ВИСОТИ фрейму: будівельник
+           завжди нижчий за фрейм і стоїть на його нижньому краї. */
+        --builder-w: auto;                          /* ширина за пропорціями фото */
+        --builder-h: calc(var(--video-h) * 0.92);   /* висота = 92% висоти фрейму
+                                                       (0.92 → більше/менше = фото вище/нижче) */
+        --builder-max-h: none;
+        --builder-left: calc(50% - var(--video-w) / 2 + var(--video-x));
+                                                    /* лівий край = лівий край фрейму */
+        --builder-bottom: calc(100% - var(--video-top) - var(--video-h) / 2 - var(--video-y));
+                                                    /* низ = нижній край фрейму */
+        --builder-x: 0px;          /* точне підсунення вліво / вправо */
+        --builder-y: 0px;          /* точне підсунення вгору / вниз */
+        --builder-z: 2;
+
+        /* ---------- ЛОГОТИП ---------- */
+        --logo-w: 78px;
+        --logo-left: 2%;
+        --logo-top: 21px;
+        --logo-x: 0px;
+        --logo-y: 0px;
+
+        /* ---------- ЗАГОЛОВОК (ВСЕРЕДИНІ СКЛЯНОГО ФРЕЙМУ) ---------- */
+        --text-left: var(--glass-left);
+        --text-bottom: var(--glass-bottom);
+        --text-w: var(--glass-w);
+        --text-h: var(--glass-h);
+        --text-pad: 10px;
+        --text-x: var(--glass-x);
+        --text-y: var(--glass-y);
+        --text-justify: center;
+        --text-align: center;
+        --text-ta: center;
+        --title-size: min(13cqw, 7.5vh);  /* не більше 13% ширини фрейму і 7.5% висоти екрана */
+        --title-line: 1.1;
+        --title-color: #ffffff;
+        --title-x: 0px;
+        --title-y: 0px;
+
+        /* ---------- КНОПКА ---------- */
+        --btn-bottom: 16px;
+        --btn-side: 0px;
+        --btn-x: 0px;
+        --btn-y: 0px;
+        --btn-w: auto;
+        --btn-pad-y: 9px;
+        --btn-pad-x: 36px;
+        --btn-font: 14px;
+
+        /* ---------- ЗВ'ЯЗКА КЛЮЧІВ ---------- */
+        --keys-w: 56px;
+        --keys-x: 30vw;
+        --keys-y: 0px;
+        --keys-angle: 24deg;
+        --keys-speed: 3.2s;
+        --btn-h: 38px;
+    }
+
+    /* Низький екран: блок рівно на висоту екрана, без мінімуму 500px */
+    body .dark-block {
+        min-height: 0;
     }
 }
 
@@ -417,8 +570,14 @@ body,
 
     display: block;
     width: var(--builder-w);
-    height: auto;
+    height: var(--builder-h);
     max-width: none;
+    max-height: var(--builder-max-h);
+
+    /* Якщо обмеження висоти спрацювало, фото не розтягується,
+       а лишається притиснутим до лівого нижнього кута */
+    object-fit: contain;
+    object-position: left bottom;
 
     transform: translate(var(--builder-x), var(--builder-y));
 
@@ -449,7 +608,12 @@ body,
 }
 
 
-/* ---------- ЗАГОЛОВОК (окремий, не залежить від кнопки) ---------- */
+/* ---------- ЗАГОЛОВОК (окремий, не залежить від кнопки) ----------
+   На комп'ютері: звичайний блок зліва вгорі.
+   На телефоні: накладається на скляний фрейм і центрує текст
+   (див. панелі №2 і №3).
+   container-type потрібен, щоб розмір шрифту міг рахуватись
+   від ширини самого блоку (одиниця cqw). */
 
 .text-block {
     position: absolute;
@@ -458,12 +622,20 @@ body,
 
     width: 100%;
     max-width: var(--text-w);
+    height: var(--text-h);
+    padding: 0 var(--text-pad);
+
+    transform: translate(var(--text-x), var(--text-y));
 
     z-index: 2;
 
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: var(--text-justify);
+    align-items: var(--text-align);
+    text-align: var(--text-ta);
+
+    container-type: inline-size;
 
     pointer-events: none;
 }
