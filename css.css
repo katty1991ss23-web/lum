@@ -12,6 +12,18 @@ body {
     padding: 0;
     width: 100%;
     background-color: #1e1e1e;
+
+    /* Сторінка не їздить убік і не «пружинить» (як було раніше: статичний екран).
+       Спочатку hidden для старих браузерів, потім clip для сучасних. */
+    overflow-x: hidden;
+    overflow-x: clip;
+    overscroll-behavior: none;
+}
+
+html {
+    /* Телефон не збільшує текст сам (через це шрифт міг відрізнятись між рядками) */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 /* Скидаємо будь-які можливі заокруглення */
@@ -33,12 +45,16 @@ body,
 
 :root {
 
-    /* ---------- ВІДЕО ---------- */
+    /* ---------- ВІДЕО / ФОТО-ФОН ---------- */
     --video-w: 96%;            /* ширина */
     --video-h: 54%;            /* висота */
     --video-top: 32%;          /* позиція зверху (більше = нижче) */
     --video-x: 0px;            /* зсув: мінус = вліво,  плюс = вправо */
     --video-y: -18px;          /* зсув: мінус = вгору,  плюс = вниз */
+    --video-brightness: 0.4;     /* ЯСКРАВІСТЬ: 1 = як є, 0.7 = темніше, 0.4 = дуже темно, 1.2 = світліше */
+    --video-contrast: 1;       /* контраст: 1 = як є */
+    --video-saturate: 1;       /* насиченість кольору: 1 = як є, 0 = чорно-біле */
+    --video-blur: 0px;         /* розмиття фону (наприклад 3px) */
 
     /* ---------- СМУГА З БЛЮРОМ ---------- */
     --frame-h: 25%;            /* висота смуги від низу */
@@ -108,8 +124,11 @@ body,
     --text-justify: flex-start;        /* по вертикалі: flex-start / center / flex-end */
     --text-align: flex-start;          /* по горизонталі: flex-start / center / flex-end */
     --text-ta: left;                   /* вирівнювання рядків: left / center / right */
+    --title-font: "Times New Roman", Times, serif;   /* ШРИФТ (однаковий скрізь); наприклад: Arial, sans-serif */
+    --title-weight: 800;               /* товщина */
+    --title-letter: 0px;               /* відстань між літерами (залиште 0 для рівного центру) */
     --title-size: 5.5rem;              /* розмір шрифту */
-    --title-line: 1.1;                 /* міжрядковий інтервал */
+    --title-line: 1.1;                 /* міжрядковий інтервал (менше = рядки ближче) */
     --title-color: #ffffff;            /* КОЛІР ЗАГОЛОВКА */
     --title-x: 0px;                    /* зсув тільки заголовка вліво / вправо */
     --title-y: 0px;                    /* зсув тільки заголовка вгору / вниз */
@@ -132,27 +151,6 @@ body,
     --keys-speed: 3.2s;        /* повний цикл; менше = швидше */
     --btn-h: 54px;             /* висота кнопки (щоб ключі висіли рівно над нею) */
 
-}
-
-.tg-float-btn {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  width: 60px;
-  height: 60px;
-  background-color: #24A1DE;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  z-index: 9999;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-.tg-float-btn:hover {
-  background-color: #1d8bc3;
-  transform: scale(1.1);
 }
 
 
@@ -184,12 +182,16 @@ body,
 
     :root {
 
-        /* ---------- ВІДЕО ---------- */
-        --video-w: 85%;
-        --video-h: 78%;
+        /* ---------- ВІДЕО / ФОТО-ФОН ---------- */
+        --video-w: 100%;
+        --video-h: 140%;
         --video-top: 50%;
         --video-x: 0px;
         --video-y: -120px;
+        --video-brightness: 0.4;     /* ЯСКРАВІСТЬ: 1 = як є, 0.7 = темніше, 0.4 = дуже темно */
+        --video-contrast: 1;
+        --video-saturate: 1;
+        --video-blur: 0px;
 
         /* ---------- СМУГА З БЛЮРОМ ---------- */
         --frame-h: 45%;
@@ -203,11 +205,11 @@ body,
         --glass-display: block;
         --glass-w: 62%;                   /* ширина фрейму */
         --glass-h: 120px;                 /* висота фрейму */
-        --glass-left: 28%;                /* зліва (центр фрейму лишився там, де був) */
-        --glass-bottom: calc(30% + 222px);/* від низу */
+        --glass-left: 26%;                /* зліва (центр фрейму лишився там, де був) */
+        --glass-bottom: calc(30% + 260px);/* від низу */
         --glass-x: 20px;                  /* зсув вліво / вправо */
-        --glass-y: 0px;                   /* зсув вгору / вниз */
-         --glass-opacity:0.74;
+        --glass-y: 70px;                  /* зсув вгору / вниз */
+        --glass-opacity: 0.74;
         --glass-bg: rgba(6, 25, 57, 0.55);
         --glass-blur: 12px;
         --glass-border: rgba(52, 128, 168, 0.18);
@@ -223,7 +225,7 @@ body,
         --marquee-size: 1.4rem;
         --marquee-weight: 600;
         --marquee-font: inherit;
-       
+
         --marquee-gap: 24px;
         --marquee-speed: 40s;
         --marquee-color: #ffffff;
@@ -234,8 +236,8 @@ body,
         /* ---------- ФОТО БУДІВЕЛЬНИКА (ПРИВ'ЯЗАНО ДО ФРЕЙМУ ВІДЕО) ----------
            Положення й розмір рахуються з налаштувань відео вище,
            тому фото не виїжджає за фрейм на жодному розмірі екрана. */
-        --builder-w: calc(var(--video-w) * 0.82);   /* ширина = 82% ширини відео
-                                                       (0.82 → більше/менше = фото ширше/вужче) */
+        --builder-w: calc(var(--video-w) * 1.02);   /* ширина = 102% ширини відео
+                                                       (1.02 → більше/менше = фото ширше/вужче) */
         --builder-h: auto;                          /* висота за пропорціями фото */
         --builder-max-h: var(--video-h);            /* не вище за фрейм відео */
         --builder-left: calc(50% - var(--video-w) / 2 + var(--video-x));
@@ -248,12 +250,16 @@ body,
 
         /* ---------- ЛОГОТИП ---------- */
         --logo-w: 110px;
-        --logo-left: 7%;
+        --logo-left: 70%;
         --logo-top: 16px;
         --logo-x: 0px;
         --logo-y: 0px;
 
         /* ---------- ЗАГОЛОВОК (ВСЕРЕДИНІ СКЛЯНОГО ФРЕЙМУ) ----------
+           Блок тексту точно накладається на скляний фрейм
+           (ті самі положення, розмір і зсув) і центрує вміст.
+           Фрейм двигаєте/міняєте вище, текст їде разом з ним. */
+                /* ---------- ЗАГОЛОВОК (ВСЕРЕДИНІ СКЛЯНОГО ФРЕЙМУ) ----------
            Блок тексту точно накладається на скляний фрейм
            (ті самі положення, розмір і зсув) і центрує вміст.
            Фрейм двигаєте/міняєте вище, текст їде разом з ним. */
@@ -265,11 +271,14 @@ body,
         --text-x: var(--glass-x);
         --text-y: var(--glass-y);
         --text-justify: center;           /* по центру вертикально */
-        --text-align: center;             /* по центру горизонтально */
-        --text-ta: center;                /* рядки по центру */
+        --text-align: center;             /* весь блок тексту по центру фрейму */
+        --text-ta: left;                  /* ← ЗМІНЕНО: рядки по лівому краю (Р і П на одній лінії) */
+        --title-font: "Times New Roman", Times, serif;   /* той самий шрифт, що й на ПК */
+        --title-weight: 800;
+        --title-letter: 0px;
         --title-size: 13cqw;              /* розмір = 13% ширини фрейму (росте/зменшується разом
                                              з ним); більше число = більший шрифт */
-        --title-line: 1.1;
+        --title-line: 0.95;               /* рядки впритул (було 1.1); менше = ще ближче */
         --title-color: #ffffff;
         --title-x: 0px;
         --title-y: 0px;
@@ -279,8 +288,7 @@ body,
         --btn-side: 0px;
         --btn-x: 0px;
         --btn-y: -60px;
-        --btn-w: var(--video-w);   /* ширина кнопки = ширина відео на телефоні;
-                                      можна поставити своє число, наприклад 80% */
+        --btn-w: 80%;  /* ширина кнопки; можна поставити своє число, наприклад 80% */
         --btn-pad-y: 14px;
         --btn-pad-x: 0px;
         --btn-font: 16px;
@@ -294,6 +302,7 @@ body,
         --btn-h: 50px;
     }
 }
+
 
 /* =========================================================
    ╔═══════════════════════════════════════════════════════╗
@@ -312,12 +321,16 @@ body,
 
     :root {
 
-        /* ---------- ВІДЕО ---------- */
+        /* ---------- ВІДЕО / ФОТО-ФОН ---------- */
         --video-w: 96%;
         --video-h: 56%;
         --video-top: 33%;
         --video-x: 0px;
         --video-y: 0px;
+        --video-brightness: 0.4;     /* ЯСКРАВІСТЬ: 1 = як є, 0.7 = темніше, 0.4 = дуже темно */
+        --video-contrast: 1;
+        --video-saturate: 1;
+        --video-blur: 0px;
 
         /* ---------- СМУГА З БЛЮРОМ ---------- */
         --frame-h: 22%;
@@ -380,6 +393,7 @@ body,
         --logo-y: 0px;
 
         /* ---------- ЗАГОЛОВОК (ВСЕРЕДИНІ СКЛЯНОГО ФРЕЙМУ) ---------- */
+                /* ---------- ЗАГОЛОВОК (ВСЕРЕДИНІ СКЛЯНОГО ФРЕЙМУ) ---------- */
         --text-left: var(--glass-left);
         --text-bottom: var(--glass-bottom);
         --text-w: var(--glass-w);
@@ -388,10 +402,13 @@ body,
         --text-x: var(--glass-x);
         --text-y: var(--glass-y);
         --text-justify: center;
-        --text-align: center;
-        --text-ta: center;
+        --text-align: center;             /* весь блок тексту по центру фрейму */
+        --text-ta: left;                  /* ← ЗМІНЕНО: рядки по лівому краю (Р і П на одній лінії) */
+        --title-font: "Times New Roman", Times, serif;
+        --title-weight: 800;
+        --title-letter: 0px;
         --title-size: min(13cqw, 7.5vh);  /* не більше 13% ширини фрейму і 7.5% висоти екрана */
-        --title-line: 1.1;
+        --title-line: 0.95;
         --title-color: #ffffff;
         --title-x: 0px;
         --title-y: 0px;
@@ -421,7 +438,6 @@ body,
     }
 }
 
-
 /* =========================================================
    ДАЛІ — САМІ ЕЛЕМЕНТИ. ЧИСЕЛ ТУТ НЕ МІНЯЙТЕ,
    УСЕ КЕРУЄТЬСЯ З ПАНЕЛЕЙ ВИЩЕ.
@@ -444,7 +460,7 @@ body,
 }
 
 
-/* ---------- ВІДЕО ---------- */
+/* ---------- ВІДЕО / ФОТО-ФОН ---------- */
 
 .bg-video {
     position: absolute;
@@ -460,6 +476,12 @@ body,
     );
 
     object-fit: cover;
+
+    /* Темніше / світліше / контрастніше / розмитіше: керується з панелей */
+    filter: brightness(var(--video-brightness))
+            contrast(var(--video-contrast))
+            saturate(var(--video-saturate))
+            blur(var(--video-blur));
 
     z-index: 1;
 }
@@ -663,9 +685,14 @@ body,
 
 .main-title {
     margin: 0;
+    padding: 0;
+
+    font-family: var(--title-font);
     font-size: var(--title-size);
-    font-weight: 800;
+    font-weight: var(--title-weight);
+    letter-spacing: var(--title-letter);
     line-height: var(--title-line);
+
     color: var(--title-color);
     text-transform: uppercase;
 
@@ -804,4 +831,28 @@ body,
     .marquee-track {
         animation: none;
     }
+}
+
+
+/* ---------- КРУГЛА КНОПКА TELEGRAM (ваша, без змін) ---------- */
+
+.tg-float-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  background-color: #24A1DE;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.tg-float-btn:hover {
+  background-color: #1d8bc3;
+  transform: scale(1.1);
 }
